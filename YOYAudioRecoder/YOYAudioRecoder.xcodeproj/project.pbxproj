@@ -1,0 +1,366 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		65874CF2215B2D93000A2642 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65874CF1215B2D93000A2642 /* AppDelegate.m */; };
+		65874CF5215B2D93000A2642 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65874CF4215B2D93000A2642 /* ViewController.m */; };
+		65874CFA215B2D94000A2642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65874CF9215B2D94000A2642 /* Assets.xcassets */; };
+		65874CFD215B2D94000A2642 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65874CFB215B2D94000A2642 /* LaunchScreen.storyboard */; };
+		65874D00215B2D94000A2642 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 65874CFF215B2D94000A2642 /* main.m */; };
+		65C46BAB215E55940035012A /* YOYAudioRecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C46BA4215E55940035012A /* YOYAudioRecoder.m */; };
+		65C46BAC215E55940035012A /* YOYCachePathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C46BA6215E55940035012A /* YOYCachePathManager.m */; };
+		65C46BAD215E55940035012A /* YOYAudioMixManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C46BA8215E55940035012A /* YOYAudioMixManager.m */; };
+		65C46BAE215E55940035012A /* NSTimer+WTCExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 65C46BA9215E55940035012A /* NSTimer+WTCExtend.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		65874CED215B2D93000A2642 /* YOYAudioRecoder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YOYAudioRecoder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65874CF0215B2D93000A2642 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		65874CF1215B2D93000A2642 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		65874CF3215B2D93000A2642 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		65874CF4215B2D93000A2642 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		65874CF9215B2D94000A2642 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		65874CFC215B2D94000A2642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		65874CFE215B2D94000A2642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65874CFF215B2D94000A2642 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		65C46BA2215E55940035012A /* YOYCachePathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOYCachePathManager.h; sourceTree = "<group>"; };
+		65C46BA3215E55940035012A /* YOYAudioMixManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOYAudioMixManager.h; sourceTree = "<group>"; };
+		65C46BA4215E55940035012A /* YOYAudioRecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOYAudioRecoder.m; sourceTree = "<group>"; };
+		65C46BA5215E55940035012A /* NSTimer+WTCExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+WTCExtend.h"; sourceTree = "<group>"; };
+		65C46BA6215E55940035012A /* YOYCachePathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOYCachePathManager.m; sourceTree = "<group>"; };
+		65C46BA7215E55940035012A /* YOYAudioRecoderHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOYAudioRecoderHeader.h; sourceTree = "<group>"; };
+		65C46BA8215E55940035012A /* YOYAudioMixManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOYAudioMixManager.m; sourceTree = "<group>"; };
+		65C46BA9215E55940035012A /* NSTimer+WTCExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+WTCExtend.m"; sourceTree = "<group>"; };
+		65C46BAA215E55940035012A /* YOYAudioRecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOYAudioRecoder.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		65874CEA215B2D93000A2642 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		65874CE4215B2D93000A2642 = {
+			isa = PBXGroup;
+			children = (
+				65874CEF215B2D93000A2642 /* YOYAudioRecoder */,
+				65874CEE215B2D93000A2642 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		65874CEE215B2D93000A2642 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65874CED215B2D93000A2642 /* YOYAudioRecoder.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		65874CEF215B2D93000A2642 /* YOYAudioRecoder */ = {
+			isa = PBXGroup;
+			children = (
+				65C46BA1215E55940035012A /* YOYAudioRecoder */,
+				65874CF0215B2D93000A2642 /* AppDelegate.h */,
+				65874CF1215B2D93000A2642 /* AppDelegate.m */,
+				65874CF3215B2D93000A2642 /* ViewController.h */,
+				65874CF4215B2D93000A2642 /* ViewController.m */,
+				65874CF9215B2D94000A2642 /* Assets.xcassets */,
+				65874CFB215B2D94000A2642 /* LaunchScreen.storyboard */,
+				65874CFE215B2D94000A2642 /* Info.plist */,
+				65874CFF215B2D94000A2642 /* main.m */,
+			);
+			path = YOYAudioRecoder;
+			sourceTree = "<group>";
+		};
+		65C46BA1215E55940035012A /* YOYAudioRecoder */ = {
+			isa = PBXGroup;
+			children = (
+				65C46BA2215E55940035012A /* YOYCachePathManager.h */,
+				65C46BA3215E55940035012A /* YOYAudioMixManager.h */,
+				65C46BA4215E55940035012A /* YOYAudioRecoder.m */,
+				65C46BA5215E55940035012A /* NSTimer+WTCExtend.h */,
+				65C46BA6215E55940035012A /* YOYCachePathManager.m */,
+				65C46BA7215E55940035012A /* YOYAudioRecoderHeader.h */,
+				65C46BA8215E55940035012A /* YOYAudioMixManager.m */,
+				65C46BA9215E55940035012A /* NSTimer+WTCExtend.m */,
+				65C46BAA215E55940035012A /* YOYAudioRecoder.h */,
+			);
+			path = YOYAudioRecoder;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		65874CEC215B2D93000A2642 /* YOYAudioRecoder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65874D03215B2D94000A2642 /* Build configuration list for PBXNativeTarget "YOYAudioRecoder" */;
+			buildPhases = (
+				65874CE9215B2D93000A2642 /* Sources */,
+				65874CEA215B2D93000A2642 /* Frameworks */,
+				65874CEB215B2D93000A2642 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YOYAudioRecoder;
+			productName = YOYAudioRecoder;
+			productReference = 65874CED215B2D93000A2642 /* YOYAudioRecoder.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		65874CE5215B2D93000A2642 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = Tommy;
+				TargetAttributes = {
+					65874CEC215B2D93000A2642 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = 65874CE8215B2D93000A2642 /* Build configuration list for PBXProject "YOYAudioRecoder" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 65874CE4215B2D93000A2642;
+			productRefGroup = 65874CEE215B2D93000A2642 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65874CEC215B2D93000A2642 /* YOYAudioRecoder */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		65874CEB215B2D93000A2642 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65874CFD215B2D94000A2642 /* LaunchScreen.storyboard in Resources */,
+				65874CFA215B2D94000A2642 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		65874CE9215B2D93000A2642 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65874CF5215B2D93000A2642 /* ViewController.m in Sources */,
+				65C46BAD215E55940035012A /* YOYAudioMixManager.m in Sources */,
+				65874D00215B2D94000A2642 /* main.m in Sources */,
+				65C46BAC215E55940035012A /* YOYCachePathManager.m in Sources */,
+				65874CF2215B2D93000A2642 /* AppDelegate.m in Sources */,
+				65C46BAB215E55940035012A /* YOYAudioRecoder.m in Sources */,
+				65C46BAE215E55940035012A /* NSTimer+WTCExtend.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		65874CFB215B2D94000A2642 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65874CFC215B2D94000A2642 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		65874D01215B2D94000A2642 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		65874D02215B2D94000A2642 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		65874D04215B2D94000A2642 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 26A9TBZGNP;
+				INFOPLIST_FILE = YOYAudioRecoder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bibidao.www;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		65874D05215B2D94000A2642 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 26A9TBZGNP;
+				INFOPLIST_FILE = YOYAudioRecoder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bibidao.www;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		65874CE8215B2D93000A2642 /* Build configuration list for PBXProject "YOYAudioRecoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65874D01215B2D94000A2642 /* Debug */,
+				65874D02215B2D94000A2642 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65874D03215B2D94000A2642 /* Build configuration list for PBXNativeTarget "YOYAudioRecoder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65874D04215B2D94000A2642 /* Debug */,
+				65874D05215B2D94000A2642 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 65874CE5215B2D93000A2642 /* Project object */;
+}

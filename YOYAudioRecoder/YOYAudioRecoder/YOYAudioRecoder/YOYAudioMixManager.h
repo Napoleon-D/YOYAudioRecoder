@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YOYAudioRecoderHeader.h"
 #import "YOYCachePathManager.h"
+#import "YOYAudioRecoderHeader.h"
 
 @protocol YOYAudioMixManagerDelegate <NSObject>
 
@@ -88,7 +88,17 @@
  */
 - (void)audioMixWithAudioPath:(NSString *)anAudioPath anotherAudioPath:(NSString *)otherAudioPath finish:(void(^)(NSError *error,NSString *resultPath))finishBlock;
 
-
+/**
+ 将音频流pcm文件转成wav文件
+ 
+ @param pcmPath 音频流pcm源文件
+ @param wavPath 目标wav文件在沙盒中的路径
+ @param sampleRate 采样率
+ @param channels 通道数
+ @param byteRate 位数
+ @param finishBlock 完成时候的回调
+ */
+-(void)translateAudioFromPCMFile:(NSString *)pcmPath toWAVFile:(NSString *)wavPath sampleRate:(int)sampleRate channels:(int)channels byteRate:(int)byteRate finish:(void (^)(void))finishBlock;
 
 
 @end

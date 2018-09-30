@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65486587215F7FC2008D1800 /* YOYAudioQueueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65486586215F7FC2008D1800 /* YOYAudioQueueManager.m */; };
 		65874CF2215B2D93000A2642 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65874CF1215B2D93000A2642 /* AppDelegate.m */; };
 		65874CF5215B2D93000A2642 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65874CF4215B2D93000A2642 /* ViewController.m */; };
 		65874CFA215B2D94000A2642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65874CF9215B2D94000A2642 /* Assets.xcassets */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		65486585215F7FC2008D1800 /* YOYAudioQueueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YOYAudioQueueManager.h; sourceTree = "<group>"; };
+		65486586215F7FC2008D1800 /* YOYAudioQueueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YOYAudioQueueManager.m; sourceTree = "<group>"; };
 		65874CED215B2D93000A2642 /* YOYAudioRecoder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YOYAudioRecoder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65874CF0215B2D93000A2642 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		65874CF1215B2D93000A2642 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -69,6 +72,8 @@
 		65874CEF215B2D93000A2642 /* YOYAudioRecoder */ = {
 			isa = PBXGroup;
 			children = (
+				65486585215F7FC2008D1800 /* YOYAudioQueueManager.h */,
+				65486586215F7FC2008D1800 /* YOYAudioQueueManager.m */,
 				65C46BA1215E55940035012A /* YOYAudioRecoder */,
 				65874CF0215B2D93000A2642 /* AppDelegate.h */,
 				65874CF1215B2D93000A2642 /* AppDelegate.m */,
@@ -85,15 +90,15 @@
 		65C46BA1215E55940035012A /* YOYAudioRecoder */ = {
 			isa = PBXGroup;
 			children = (
-				65C46BA2215E55940035012A /* YOYCachePathManager.h */,
-				65C46BA3215E55940035012A /* YOYAudioMixManager.h */,
-				65C46BA4215E55940035012A /* YOYAudioRecoder.m */,
-				65C46BA5215E55940035012A /* NSTimer+WTCExtend.h */,
-				65C46BA6215E55940035012A /* YOYCachePathManager.m */,
-				65C46BA7215E55940035012A /* YOYAudioRecoderHeader.h */,
-				65C46BA8215E55940035012A /* YOYAudioMixManager.m */,
-				65C46BA9215E55940035012A /* NSTimer+WTCExtend.m */,
 				65C46BAA215E55940035012A /* YOYAudioRecoder.h */,
+				65C46BA4215E55940035012A /* YOYAudioRecoder.m */,
+				65C46BA3215E55940035012A /* YOYAudioMixManager.h */,
+				65C46BA8215E55940035012A /* YOYAudioMixManager.m */,
+				65C46BA2215E55940035012A /* YOYCachePathManager.h */,
+				65C46BA6215E55940035012A /* YOYCachePathManager.m */,
+				65C46BA5215E55940035012A /* NSTimer+WTCExtend.h */,
+				65C46BA9215E55940035012A /* NSTimer+WTCExtend.m */,
+				65C46BA7215E55940035012A /* YOYAudioRecoderHeader.h */,
 			);
 			path = YOYAudioRecoder;
 			sourceTree = "<group>";
@@ -171,6 +176,7 @@
 				65C46BAD215E55940035012A /* YOYAudioMixManager.m in Sources */,
 				65874D00215B2D94000A2642 /* main.m in Sources */,
 				65C46BAC215E55940035012A /* YOYCachePathManager.m in Sources */,
+				65486587215F7FC2008D1800 /* YOYAudioQueueManager.m in Sources */,
 				65874CF2215B2D93000A2642 /* AppDelegate.m in Sources */,
 				65C46BAB215E55940035012A /* YOYAudioRecoder.m in Sources */,
 				65C46BAE215E55940035012A /* NSTimer+WTCExtend.m in Sources */,

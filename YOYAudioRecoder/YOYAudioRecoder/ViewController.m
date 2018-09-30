@@ -9,10 +9,14 @@
 #import "ViewController.h"
 #import "YOYAudioRecoderHeader.h"
 #import "YOYAudioRecoder.h"
+#import "YOYAudioQueueManager.h"
 
 @interface ViewController ()<YOYAudioRecoderDelegate>
 
 @property(nonatomic,strong)YOYAudioRecoder *audioRecoder;
+
+@property(nonatomic,strong)YOYAudioQueueManager *audioQueueManager;
+
 
 @end
 
@@ -61,6 +65,7 @@
 -(void)startRecoderBtnClicked:(UIButton *)sender{
     NSLog(@"开始录音");
     [self.audioRecoder startAudioRecoder];
+//    [self.audioQueueManager startRecording];
 }
 
 -(void)pauseRecoderBtnClicked:(UIButton *)sender{
@@ -76,6 +81,7 @@
 -(void)stopRecoderBtnClicked:(UIButton *)sender{
     NSLog(@"停止录音");
     [self.audioRecoder stopAudioRecoder];
+//    [self.audioQueueManager stopRecording];
 }
 
 - (YOYAudioRecoder *)audioRecoder{
@@ -85,6 +91,14 @@
     }
     return _audioRecoder;
 }
+
+- (YOYAudioQueueManager *)audioQueueManager{
+    if (!_audioQueueManager) {
+        _audioQueueManager = [[YOYAudioQueueManager alloc] init];
+    }
+    return _audioQueueManager;
+}
+
 
 #pragma mark YOYAudioRecoderDelegate
 

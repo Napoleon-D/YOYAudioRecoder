@@ -274,6 +274,93 @@
     }];
 }
 
+/**
+ 将音频流pcm文件转成wav文件
+
+ @param pcmPath 音频流pcm源文件
+ @param wavPath 目标wav文件在沙盒中的路径
+ @param sampleRate 采样率
+ @param channels 通道数
+ @param byteRate 位数
+ @param finishBlock 完成时候的回调
+ */
+-(void)translateAudioFromPCMFile:(NSString *)pcmPath toWAVFile:(NSString *)wavPath sampleRate:(int)sampleRate channels:(int)channels byteRate:(int)byteRate finish:(void (^)(void))finishBlock{
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSData *audioData = [NSData dataWithContentsOfFile:pcmPath];
+    NSDictionary *fileDic = [fileManager attributesOfItemAtPath:pcmPath error:nil];
+    unsigned long long size = [[fileDic objectForKey:NSFileSize] longLongValue];
+    
+    NSData *header = WriteWavFileHeader(size-44,size-8,sampleRate,channels,byteRate);
+    NSMutableData *wavDatas = [[NSMutableData alloc] init];
+    [wavDatas appendData:header];
+    [wavDatas appendData:audioData];
+    
+    if (![fileManager fileExistsAtPath:wavPath]) {
+        [fileManager createFileAtPath:wavPath contents:nil attributes:nil];
+    }
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:wavPath];
+    fileHandle.writeabilityHandler = ^(NSFileHandle * handle) {
+        [fileManager removeItemAtPath:pcmPath error:nil];
+        if (finishBlock) {
+            finishBlock();
+        }
+    };
+    [fileHandle writeData:wavDatas];
+    
+}
+
+/// 放回wav的头文件信息
+NSData* WriteWavFileHeader(long totalAudioLen, long totalDataLen, long longSampleRate,int channels, long byteRate)
+{
+    Byte  header[44];
+    header[0] = 'R';  // RIFF/WAVE header
+    header[1] = 'I';
+    header[2] = 'F';
+    header[3] = 'F';
+    header[4] = (Byte) (totalDataLen & 0xff);  //file-size (equals file-size - 8)
+    header[5] = (Byte) ((totalDataLen >> 8) & 0xff);
+    header[6] = (Byte) ((totalDataLen >> 16) & 0xff);
+    header[7] = (Byte) ((totalDataLen >> 24) & 0xff);
+    header[8] = 'W';  // Mark it as type "WAVE"
+    header[9] = 'A';
+    header[10] = 'V';
+    header[11] = 'E';
+    header[12] = 'f';  // Mark the format section 'fmt ' chunk
+    header[13] = 'm';
+    header[14] = 't';
+    header[15] = ' ';
+    header[16] = 16;   // 4 bytes: size of 'fmt ' chunk, Length of format data.  Always 16
+    header[17] = 0;
+    header[18] = 0;
+    header[19] = 0;
+    header[20] = 1;  // format = 1 ,Wave type PCM
+    header[21] = 0;
+    header[22] = (Byte) channels;  // channels
+    header[23] = 0;
+    header[24] = (Byte) (longSampleRate & 0xff);
+    header[25] = (Byte) ((longSampleRate >> 8) & 0xff);
+    header[26] = (Byte) ((longSampleRate >> 16) & 0xff);
+    header[27] = (Byte) ((longSampleRate >> 24) & 0xff);
+    header[28] = (Byte) (byteRate & 0xff);
+    header[29] = (Byte) ((byteRate >> 8) & 0xff);
+    header[30] = (Byte) ((byteRate >> 16) & 0xff);
+    header[31] = (Byte) ((byteRate >> 24) & 0xff);
+    header[32] = (Byte) (2 * 16 / 8); // block align
+    header[33] = 0;
+    header[34] = 16; // bits per sample
+    header[35] = 0;
+    header[36] = 'd'; //"data" marker
+    header[37] = 'a';
+    header[38] = 't';
+    header[39] = 'a';
+    header[40] = (Byte) (totalAudioLen & 0xff);  //data-size (equals file-size - 44).
+    header[41] = (Byte) ((totalAudioLen >> 8) & 0xff);
+    header[42] = (Byte) ((totalAudioLen >> 16) & 0xff);
+    header[43] = (Byte) ((totalAudioLen >> 24) & 0xff);
+    return [[NSData alloc] initWithBytes:header length:44];;
+}
+
 
 
 #pragma mark 私有方法

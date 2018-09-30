@@ -35,15 +35,20 @@
 /**
  创建目录
  */
--(void)createCacheFileDir{
+-(void)createCacheFileDirWithPath:(NSString *)path{
+    /// 默认的存储路径
+    _cachePath = [self defaultCachePath];
+    if (path) {
+        _cachePath = path;
+    }
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isDir = NO;
     BOOL isExists = NO;
-    if ([fileManager fileExistsAtPath:self.cachePath isDirectory:&isDir]) {
+    if ([fileManager fileExistsAtPath:_cachePath isDirectory:&isDir]) {
         isExists = YES;
     }
     if ((!isDir)&&(!isExists)){
-        [fileManager createDirectoryAtPath:self.cachePath withIntermediateDirectories:YES attributes:nil error:nil];
+        [fileManager createDirectoryAtPath:_cachePath withIntermediateDirectories:YES attributes:nil error:nil];
     }
 }
 
@@ -51,15 +56,24 @@
  移除录音文件-->保留文件夹,保留当天的录音文件
  */
 -(void)removeAudioFiles{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isDir = NO;
+    BOOL isExists = NO;
+    if ([fileManager fileExistsAtPath:_cachePath isDirectory:&isDir]) {
+        isExists = YES;
+    }
+    if ((!isDir)&&(!isExists)){
+        NSLog(@"沙盒中不存在该目录");
+        return;
+    }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyyMMdd"];
     NSDate *now = [NSDate date];
     NSString *partName = [dateFormatter stringFromDate:now];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtPath:self.cachePath];
+    NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtPath:_cachePath];
     for (NSString *fileName in enumerator) {
         if (![fileName containsString:partName]) {
-            [fileManager removeItemAtPath:[self.cachePath stringByAppendingPathComponent:fileName] error:nil];
+            [fileManager removeItemAtPath:[_cachePath stringByAppendingPathComponent:fileName] error:nil];
         }
     }
 }
@@ -84,6 +98,33 @@
     return [self savedPathWithType:@".m4a"];
 }
 
+/**
+ 获取录音在沙盒中的存放位置(.pcm格式的文件全路径)
+ 
+ @return 录音文件存在路径
+ */
+-(NSString *)savedPathForPCMAudio{
+    return [self savedPathWithType:@".pcm"];
+}
+
+/**
+ 获取录音在沙盒中的存放位置(.mp3格式的文件全路径)
+ 
+ @return 录音文件存在路径
+ */
+-(NSString *)savedPathForMP3Audio{
+    return [self savedPathWithType:@".mp3"];
+}
+
+/**
+ 获取录音在沙盒中的存放位置(.wav格式的文件全路径)
+ 
+ @return 录音文件存在路径
+ */
+-(NSString *)savedPathForWAVAudio{
+    return [self savedPathWithType:@".wav"];
+}
+
 -(NSString *)savedPathWithType:(NSString *)type{
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -92,30 +133,12 @@
     NSString *prefixName = [dateFormatter stringFromDate:now];
     NSString *suffixName = type;
     NSString *fileName = [NSString stringWithFormat:@"%@%@",prefixName,suffixName];
-    NSString *audioPath = [self.cachePath stringByAppendingPathComponent:fileName];
+    NSString *audioPath = [_cachePath stringByAppendingPathComponent:fileName];
     return audioPath;
     
 }
 
 #pragma mark 私有方法
-
-- (NSString *)cachePath{
-    if (!_cachePath) {
-        if ([self.cachePathDelegate respondsToSelector:@selector(cachePathForAudioRecoder)]) {
-            /// 用户自定义了存储路径
-            NSString *tmp = [self.cachePathDelegate cachePathForAudioRecoder];
-            if (!tmp) {
-                _cachePath = [self defaultCachePath];
-            }else{
-                _cachePath = tmp;
-            }
-        }else{
-            /// 默认的存储路径
-            _cachePath = [self defaultCachePath];
-        }
-    }
-    return _cachePath;
-}
 
 -(NSString *)defaultCachePath{
     NSString *libraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES).firstObject;

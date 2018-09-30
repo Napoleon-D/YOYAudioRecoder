@@ -7,22 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@protocol YOYCachePathDelegate <NSObject>
-
-@optional
-/**
- 用户自定义的录音文件存储路径
- 
- @return 录音文件存储路径
- */
--(NSString *)cachePathForAudioRecoder;
-
-@end
+#import "YOYAudioRecoderHeader.h"
 
 @interface YOYCachePathManager : NSObject
-
-@property(nonatomic,assign)id<YOYCachePathDelegate>cachePathDelegate;
 
 /**
  创建该类的一个单例
@@ -33,8 +20,10 @@
 
 /**
  创建目录
+
+ @param path 自定义沙盒目录，默认传nil，沙盒路径为NSLibraryDirectory中的RecodedAudio
  */
--(void)createCacheFileDir;
+-(void)createCacheFileDirWithPath:(NSString *)path;
 
 /**
  移除录音文件-->保留文件夹,保留当天的录音文件
@@ -54,5 +43,26 @@
  @return 录音文件存在路径
  */
 -(NSString *)savedPathForM4aAudio;
+
+/**
+ 获取录音在沙盒中的存放位置(.pcm格式的文件全路径)
+ 
+ @return 录音文件存在路径
+ */
+-(NSString *)savedPathForPCMAudio;
+
+/**
+ 获取录音在沙盒中的存放位置(.mp3格式的文件全路径)
+ 
+ @return 录音文件存在路径
+ */
+-(NSString *)savedPathForMP3Audio;
+
+/**
+ 获取录音在沙盒中的存放位置(.wav格式的文件全路径)
+ 
+ @return 录音文件存在路径
+ */
+-(NSString *)savedPathForWAVAudio;
 
 @end

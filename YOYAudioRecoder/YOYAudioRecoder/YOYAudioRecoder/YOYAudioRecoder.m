@@ -46,7 +46,7 @@
 -(instancetype)init{
     if (self = [super init]) {
         /// 创建沙盒目录
-        [self.pathManager createCacheFileDir];
+        [self.pathManager createCacheFileDirWithPath:nil];
         /// 移除多余录音文件
         [self.pathManager removeAudioFiles];
         _audioFilePath = @"";

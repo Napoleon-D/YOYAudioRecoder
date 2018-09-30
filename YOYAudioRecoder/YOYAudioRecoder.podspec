@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
 s.name        = "YOYAudioRecoder"
 
-s.version     = "0.0.1"
+s.version     = "0.0.3"
 
 s.platform = :ios, "8.0"
 

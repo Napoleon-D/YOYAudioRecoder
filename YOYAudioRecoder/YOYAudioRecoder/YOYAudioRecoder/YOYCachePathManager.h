@@ -31,6 +31,11 @@
 -(void)removeAudioFiles;
 
 /**
+ 移除RecodedAudio文件夹下的所有文件
+ */
+-(void)removeAllAudioFiles;
+
+/**
  获取录音在沙盒中的存放位置(.caf格式的文件全路径)
 
  @return 录音文件存在路径

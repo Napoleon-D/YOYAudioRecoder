@@ -259,7 +259,7 @@
         NSFileManager *defaultManager = [NSFileManager defaultManager];
         
         if ([defaultManager fileExistsAtPath:resultPath]) {
-            [defaultManager removeItemAtPath:originalAudioPath error:nil];
+//            [defaultManager removeItemAtPath:originalAudioPath error:nil];
             if (finishBlock) {
                 finishBlock(nil,resultPath);
             }

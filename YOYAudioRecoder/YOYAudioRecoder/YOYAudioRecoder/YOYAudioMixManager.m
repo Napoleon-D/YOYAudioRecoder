@@ -22,7 +22,7 @@
  @return 单例
  */
 +(YOYAudioMixManager *)sharedAudioMixManager{
-
+    
     static YOYAudioMixManager *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -34,7 +34,7 @@
 
 /**
  录音完成后 转 m4a格式的方法
-
+ 
  @param audioPath 源文件在沙盒的路径
  @param finishBlock 转换m4a完成时候的回调
  */
@@ -56,7 +56,7 @@
  合并多段音频
  增加音频时长
  对应的合并完成的回调方法为：didFinishMixAudio:withError:
-
+ 
  @param originalAudioArray 存放音频路径的数组
  */
 -(void)mixAudio:(NSArray <NSString *>*)originalAudioArray{
@@ -94,7 +94,7 @@
 /**
  两段音频合并成一段音频
  增加音频时长
-
+ 
  @param path 第一段录音
  @param secondPath 第二段录音
  @param finishBlock 完成时候的回调
@@ -139,54 +139,109 @@
 
 /**
  音频截取
- 若时间不足，不予截取
+ isForce为No的情况下：若时间不足，不予截取；时间足够，给予截取；
+ isForce为YES的情况下：若时间不足，添加空白音在末尾；若时间足够，给予截取；
  返回的格式为.m4a
-
+ 
  @param anAudioPath 源录音文件
  @param time 截取的总共时间
+ @param isForce 是否强制截取
  @param finishBlock 完成时候的回调
  */
--(void)interceptAnAudio:(NSString *)anAudioPath withTime:(float)time finish:(void(^)(NSError *error,NSString *resultPath))finishBlock{
+-(void)interceptAnAudio:(NSString *)anAudioPath withTime:(float)time force:(BOOL)isForce finish:(void(^)(NSError *error,NSString *resultPath))finishBlock{
     
+    __weak YOYAudioMixManager *weakSelf = self;
     AVURLAsset *audioAsset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:anAudioPath] options:nil];
     float totalTime = CMTimeGetSeconds(audioAsset.duration);
     
-    if (totalTime <= time) {
-        /// 时间不足，不予截取
-        if (finishBlock) {
-            finishBlock(nil,anAudioPath);
+    if (isForce) {
+        /// 强制截取
+        if (totalTime < time) {
+            /// 时间不足，末尾添加空白音
+            NSString *blankPath = [[NSBundle mainBundle] pathForResource:@"blankAudio.m4a" ofType:nil];
+            float needAddTime = time - (int)totalTime;
+            [self interceptAnAudio:blankPath withTime:needAddTime force:YES finish:^(NSError *error, NSString *resultPath) {
+                if (error) {
+                    if (finishBlock) {
+                        finishBlock(error,resultPath);
+                    }
+                }else{
+                    /// 进行空白音添加
+                    [weakSelf firstPath:anAudioPath secondPath:resultPath finish:^(NSError *error, NSString *resultPath) {
+                        if (finishBlock) {
+                            finishBlock(error,resultPath);
+                        }
+                    }];
+                }
+            }];
+            
+        }else if (totalTime == time){
+            /// 时间相等，无需截取
+            if (finishBlock) {
+                finishBlock(nil,anAudioPath);
+            }
+        }else{
+            /// 时间充足进行截取
+            AVAssetExportSession *exportSession = [AVAssetExportSession exportSessionWithAsset:audioAsset presetName:AVAssetExportPresetAppleM4A];
+            NSString *targetPath = [self.pathManager savedPathForM4aAudio];
+            exportSession.outputURL = [NSURL fileURLWithPath:targetPath];
+            exportSession.outputFileType = AVFileTypeAppleM4A;
+            exportSession.shouldOptimizeForNetworkUse = YES;
+            CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(CMTimeMake(0, 1), CMTimeMake(time, 1));
+            exportSession.timeRange = exportTimeRange;
+            [exportSession exportAsynchronouslyWithCompletionHandler:^{
+                
+                NSFileManager *file = [NSFileManager defaultManager];
+                if ([file fileExistsAtPath:targetPath]) {
+                    if (finishBlock) {
+                        finishBlock(nil,targetPath);
+                    }
+                }else{
+                    NSError *error = [NSError errorWithDomain:NSMachErrorDomain code:-1 userInfo:nil];
+                    if (finishBlock) {
+                        finishBlock(error,nil);
+                    }
+                }
+            }];
         }
     }else{
-        /// 时间充足，进行截取
-        AVAssetExportSession *exportSession = [AVAssetExportSession exportSessionWithAsset:audioAsset presetName:AVAssetExportPresetAppleM4A];
-        NSString *targetPath = [self.pathManager savedPathForM4aAudio];
-        exportSession.outputURL = [NSURL fileURLWithPath:targetPath];
-        exportSession.outputFileType = AVFileTypeAppleM4A;
-        exportSession.shouldOptimizeForNetworkUse = YES;
-        CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(CMTimeMake(0, 1), CMTimeMake(time, 1));
-        exportSession.timeRange = exportTimeRange;
-        [exportSession exportAsynchronouslyWithCompletionHandler:^{
-
-            NSFileManager *file = [NSFileManager defaultManager];
-            if ([file fileExistsAtPath:targetPath]) {
-                if (finishBlock) {
-                    finishBlock(nil,targetPath);
-                }
-            }else{
-                NSError *error = [NSError errorWithDomain:NSMachErrorDomain code:-1 userInfo:nil];
-                if (finishBlock) {
-                    finishBlock(error,nil);
-                }
+        /// 非强制截取
+        if (totalTime <= time) {
+            /// 时间不足，不予截取
+            if (finishBlock) {
+                finishBlock(nil,anAudioPath);
             }
-        }];
-        
+        }else{
+            /// 时间充足，给予截取
+            AVAssetExportSession *exportSession = [AVAssetExportSession exportSessionWithAsset:audioAsset presetName:AVAssetExportPresetAppleM4A];
+            NSString *targetPath = [self.pathManager savedPathForM4aAudio];
+            exportSession.outputURL = [NSURL fileURLWithPath:targetPath];
+            exportSession.outputFileType = AVFileTypeAppleM4A;
+            exportSession.shouldOptimizeForNetworkUse = YES;
+            CMTimeRange exportTimeRange = CMTimeRangeFromTimeToTime(CMTimeMake(0, 1), CMTimeMake(time, 1));
+            exportSession.timeRange = exportTimeRange;
+            [exportSession exportAsynchronouslyWithCompletionHandler:^{
+                
+                NSFileManager *file = [NSFileManager defaultManager];
+                if ([file fileExistsAtPath:targetPath]) {
+                    if (finishBlock) {
+                        finishBlock(nil,targetPath);
+                    }
+                }else{
+                    NSError *error = [NSError errorWithDomain:NSMachErrorDomain code:-1 userInfo:nil];
+                    if (finishBlock) {
+                        finishBlock(error,nil);
+                    }
+                }
+            }];
+            
+        }
     }
-    
 }
 
 /**
  音频合成，两段音频合并成一段音频，音频时长不会增加
-
+ 
  @param anAudioPath 第一段录音
  @param otherAudioPath 另一段录音
  @param finishBlock 完成时候的回调
@@ -232,7 +287,7 @@
 
 /**
  根据音量，重新生成单段的音频，格式为.m4a
-
+ 
  @param originalAudioPath 录音源文件在沙盒中的路径
  @param volume 音量
  @param finishBlock 完成时候的回调
@@ -253,13 +308,13 @@
     exportSession.outputURL = [NSURL fileURLWithPath:resultPath];
     exportSession.outputFileType = @"com.apple.m4a-audio";
     exportSession.shouldOptimizeForNetworkUse = YES;
-
+    
     [exportSession exportAsynchronouslyWithCompletionHandler:^{
         
         NSFileManager *defaultManager = [NSFileManager defaultManager];
         
         if ([defaultManager fileExistsAtPath:resultPath]) {
-//            [defaultManager removeItemAtPath:originalAudioPath error:nil];
+            //            [defaultManager removeItemAtPath:originalAudioPath error:nil];
             if (finishBlock) {
                 finishBlock(nil,resultPath);
             }
@@ -276,7 +331,7 @@
 
 /**
  将音频流pcm文件转成wav文件
-
+ 
  @param pcmPath 音频流pcm源文件
  @param wavPath 目标wav文件在沙盒中的路径
  @param sampleRate 采样率
@@ -368,6 +423,7 @@ NSData* WriteWavFileHeader(long totalAudioLen, long totalDataLen, long longSampl
 - (YOYCachePathManager *)pathManager{
     if (!_pathManager) {
         _pathManager = [YOYCachePathManager sharedCachePathManager];
+        [_pathManager createCacheFileDirWithPath:nil];
     }
     return _pathManager;
 }

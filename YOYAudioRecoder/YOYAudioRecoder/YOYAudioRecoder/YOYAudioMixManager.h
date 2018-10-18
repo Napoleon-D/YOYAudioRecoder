@@ -14,7 +14,7 @@
 
 /**
  录音在转m4a类型的时候，自定义设置音量大小，默认是1.0f
-
+ 
  @return 音量
  */
 -(float)volumeForOneAudio;
@@ -35,7 +35,7 @@
 
 /**
  创建该类的一个单例
-
+ 
  @return 单例
  */
 +(YOYAudioMixManager *)sharedAudioMixManager;
@@ -52,14 +52,16 @@
 
 /**
  音频截取
- 若时间不足，不予截取
+ isForce为No的情况下：若时间不足，不予截取；时间足够，给予截取；
+ isForce为YES的情况下：若时间不足，添加空白音在末尾；若时间足够，给予截取；
  返回的格式为.m4a
  
  @param anAudioPath 源录音文件
  @param time 截取的总共时间
+ @param isForce 是否强制截取
  @param finishBlock 完成时候的回调
  */
--(void)interceptAnAudio:(NSString *)anAudioPath withTime:(float)time finish:(void(^)(NSError *error,NSString *resultPath))finishBlock;
+-(void)interceptAnAudio:(NSString *)anAudioPath withTime:(float)time force:(BOOL)isForce finish:(void(^)(NSError *error,NSString *resultPath))finishBlock;
 
 /**
  合并多段音频
@@ -99,6 +101,7 @@
  @param finishBlock 完成时候的回调
  */
 -(void)translateAudioFromPCMFile:(NSString *)pcmPath toWAVFile:(NSString *)wavPath sampleRate:(int)sampleRate channels:(int)channels byteRate:(int)byteRate finish:(void (^)(void))finishBlock;
+
 
 
 @end

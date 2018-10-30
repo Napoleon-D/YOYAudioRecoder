@@ -355,14 +355,12 @@
         [fileManager createFileAtPath:wavPath contents:nil attributes:nil];
     }
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:wavPath];
-    fileHandle.writeabilityHandler = ^(NSFileHandle * handle) {
-        [fileManager removeItemAtPath:pcmPath error:nil];
-        if (finishBlock) {
-            finishBlock();
-        }
-    };
     [fileHandle writeData:wavDatas];
-    
+    [fileHandle closeFile];
+    [fileManager removeItemAtPath:pcmPath error:nil];
+    if (finishBlock) {
+        finishBlock();
+    }
 }
 
 /// 放回wav的头文件信息
